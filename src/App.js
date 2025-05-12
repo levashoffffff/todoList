@@ -30,6 +30,19 @@ function App() {
     setInputValue(event.target.value);
   }
 
+  const checkHandler = (id) => {
+    const newArr = todoList.map((el) => {
+      if (el.id === id) {
+        const copyObj = {...el};
+        //Данной конструкцией меняем true на false и обратно!!!
+        copyObj.checked = !copyObj.checked;
+        return copyObj;
+      }
+      return el
+    })
+    setTodo(newArr);
+  }
+
   return (
     <div className="App">
       <div className='field'>
@@ -40,8 +53,8 @@ function App() {
         return (
           <div className='block'>
             <div className='block-name'>
-              <input type='checkbox' checked={i.checked} />
-              <div className='line-name'>{i.name}</div>
+              <input type='checkbox' checked={i.checked} onChange={() => checkHandler(i.id)} />
+              <div className={i.checked ? 'line-name' : ''}>{i.name}</div>
             </div>
             <div onClick={() => deleteHandler(i.id)}>X</div>
           </div>
