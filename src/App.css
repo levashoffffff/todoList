@@ -75,3 +75,16 @@
 .line-name {
   text-decoration: line-through;
 }
+
+.icons {
+  display: flex;
+}
+
+.icons div {
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.editedInput {
+  max-width: 200px;
+}

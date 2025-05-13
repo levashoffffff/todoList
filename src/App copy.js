@@ -1,6 +1,5 @@
 import './App.css';
 import { useState } from 'react';
-import { Todo } from './Components/Todo';
 
 function App() {
   //state для хранения value в input
@@ -58,7 +57,7 @@ function App() {
   const changeName = (id) => {
     const newArr = todoList.map((el) => {
       if (el.id === id) {
-        const copyObj = { ...el };
+        const copyObj = {...el};
         copyObj.name = editedValue;
         return copyObj;
       }
@@ -75,19 +74,23 @@ function App() {
         <button onClick={addHandler}>Добавить</button>
       </div>
       {todoList.map((i) => {
-        return (<Todo
-          key={i.id}
-          id={i.id}
-          name={i.name}
-          checked={i.checked}
-          editedId={editedId}
-          editedValue={editedValue}
-          setEditedValue={setEditedValue}
-          changeName={changeName} 
-          checkHandler={checkHandler}
-          editHandler={editHandler}
-          deleteHandler={deleteHandler}
-        />)
+        return (
+          <div className='block'>
+            {i.id === editedId ?
+              <div>
+                <input className='editedInput' value={editedValue} onChange={(e) => setEditedValue(e.target.value)} />
+                <button onClick={() => changeName(i.id)}>add</button>
+              </div> :
+              <div className='block-name'>
+                <input type='checkbox' checked={i.checked} onChange={() => checkHandler(i.id)} />
+                <div className={i.checked ? 'line-name' : ''}>{i.name}</div>
+              </div>}
+            <div className='icons'>
+              <div onClick={() => editHandler(i.id, i.name)}>&#128397;</div>
+              <div onClick={() => deleteHandler(i.id)}>X</div>
+            </div>
+          </div>
+        )
       })}
     </div>
   );
