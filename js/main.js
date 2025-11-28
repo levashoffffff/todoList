@@ -3,10 +3,11 @@ const input = document.querySelector('#taskInput');
 const tasksList = document.querySelector('#tasksList');
 
 let tasks = [];
+
+//Из localStorage достаем данные и преобразуем обратно в массив
 let data = JSON.parse(localStorage.getItem('tasksLocal'));
 
-if (data) {
-
+if (data.length) {
     tasks = [...data];
     for (let task in tasks) {
         renderPage(tasks[task]);
@@ -32,8 +33,11 @@ function addTask(event) {
     //Помещаем задачу в массив
     tasks.push(taskObject);
 
-    //Закидываем в локальное хранилище данные
+    //Закидываем в локальное хранилище данные, при этом преобразовам массив в строку json
     localStorage.setItem('tasksLocal', JSON.stringify(tasks));
+
+    //Перерендерим станицу
+    /* renderPage(taskObject); */
 
     input.value = '';
     input.focus();
