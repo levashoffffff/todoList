@@ -19,8 +19,8 @@
 
 1. **Клонируйте репозиторий:**
 ```bash
-git clone https://github.com/ваш-username/todo-app.git
-cd todo-app
+git clone https://github.com/levashoffffff/todoList.git
+cd todoList
 
 
 ## 📁 Структура проекта
